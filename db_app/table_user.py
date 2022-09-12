@@ -1,12 +1,6 @@
 from database import Base, SessionLocal
-from sqlalchemy import Column, Integer, String, func
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.sql.functions import count
-
-class Post(Base):
-    __tablename__ = "post"
-    id = Column(Integer, primary_key=True)
-    text = Column(String)
-    topic = Column(String)
 
 
 class User(Base):
@@ -34,17 +28,3 @@ if __name__ == '__main__':
     ):
         li.append(tuple(user))
     print(li)
-
-
-# if __name__ == '__main__':
-#     session = SessionLocal()
-#     li = []
-#     for post in (
-#         session.query(Post)
-#         .filter(Post.topic == "business")
-#         .order_by(Post.id.desc())
-#         .limit(10)
-#         .all()
-#     ):
-#         li.append(post.id)
-#     print(li)
