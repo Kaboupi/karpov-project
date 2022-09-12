@@ -1,4 +1,3 @@
-import psycopg2
 import datetime
 from pydantic import BaseModel
 
