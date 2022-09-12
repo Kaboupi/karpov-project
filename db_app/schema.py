@@ -11,14 +11,14 @@ class PostGet(BaseModel):
         orm_mode = True
 
 class UserGet(BaseModel):
-    age: int = 0
-    city: str
-    country: str
-    exp_group: int
-    gender: int
-    id: int
-    os: str
-    source: str
+    age: int = None
+    city: str = ""
+    country: str = ""
+    exp_group: int = None
+    gender: int = None
+    id: int = None
+    os: str = ""
+    source: str = ""
 
     class Config:
         orm_mode = True

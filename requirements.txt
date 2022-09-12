@@ -3,5 +3,6 @@ sqlalchemy==1.4.41
 pydantic==1.10.2
 fastapi==0.83.0
 loguru==0.6.0
+uvicorn==0.18.3
 
-# text
+# python -m uvicorn app:app --reload --port 8895
