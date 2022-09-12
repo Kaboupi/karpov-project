@@ -3,20 +3,20 @@ import datetime
 from pydantic import BaseModel
 
 class PostGet(BaseModel):
-    id: int
-    text: str
-    topic: str
+    id: int = None
+    text: str = ""
+    topic: str = ""
 
     class Config:
         orm_mode = True
 
 class UserGet(BaseModel):
-    age: int = None
-    city: str = ""
-    country: str = ""
-    exp_group: int = None
-    gender: int = None
     id: int = None
+    gender: int = None
+    age: int = None
+    country: str = ""
+    city: str = ""
+    exp_group: int = None
     os: str = ""
     source: str = ""
 
@@ -25,11 +25,10 @@ class UserGet(BaseModel):
 
 
 class FeedGet(BaseModel):
-    action: str
-    post_id: int
-    time: datetime.datetime
-    user_id: int
+    user_id: int = None
+    post_id: int = None
+    action: str = ""
+    time: datetime.datetime = None
 
     class Config:
         orm_mode = True
-
