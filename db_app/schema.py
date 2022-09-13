@@ -1,5 +1,5 @@
 import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel  # For pydantic classes based on BaseModel
 
 class PostGet(BaseModel):
     id: int = None
@@ -21,7 +21,6 @@ class UserGet(BaseModel):
 
     class Config:
         orm_mode = True
-
 
 class FeedGet(BaseModel):
     user_id: int = None

@@ -31,3 +31,22 @@ def get_post_id(id: int, db: Session = Depends(get_db)):
         raise HTTPException(404, f"404, post with id {id} not found")
     else:
         return result
+
+@app.get("/user/{id}/feed", response_model=List[FeedGet])
+def get_user_feed(
+        id: int,
+        limit: int = 10,
+        db: Session = Depends(get_db)
+    ):
+    result = db.query(Feed).filter(Feed.user_id == id).order_by(Feed.time.desc()).limit(limit).all()
+    return result
+
+
+@app.get("/post/{id}/feed", response_model=List[FeedGet])
+def get_post_feed(
+        id: int,
+        limit: int = 10,
+        db: Session = Depends(get_db)
+    ):
+    result = db.query(Feed).filter(Feed.post_id == id).order_by(Feed.time.desc()).limit(limit).all()
+    return result

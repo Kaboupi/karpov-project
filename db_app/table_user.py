@@ -18,7 +18,6 @@ class User(Base):
 if __name__ == '__main__':
     session = SessionLocal()
     li = []
-
     for user in (
         session.query(User.country, User.os, count("*"))
         .filter(User.exp_group == 3)

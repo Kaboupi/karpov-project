@@ -23,10 +23,10 @@ if __name__ == '__main__':
     li = []
     for feed in (
         session.query(Feed)
-        .filter(Feed.user_id == 22736)
+        .filter(Feed.user_id == 1203)
         .order_by(Feed.post_id.desc())
         .limit(10)
         .all()
     ):
-        li.append(feed.user_id)
+        li.append((feed.user_id, feed.post_id, feed.action, feed.time))
     print(li)
