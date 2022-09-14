@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from loguru import logger
 from schema import PostGet, UserGet, FeedGet
 from database import SessionLocal
+from sqlalchemy.sql.functions import count
 from sqlalchemy.orm import Session
 from table_post import Post
 from table_user import User
@@ -49,4 +50,22 @@ def get_post_feed(
         db: Session = Depends(get_db)
     ):
     result = db.query(Feed).filter(Feed.post_id == id).order_by(Feed.time.desc()).limit(limit).all()
+    return result
+
+
+@app.get("/post/recommendations/")
+def get_recommended_feed(
+        id: int,
+        limit: int = 10,
+        db: Session = Depends(get_db)
+    ):
+    result = db.query(Post)\
+            .select_from(Feed)\
+            .filter(Feed.action == 'like')\
+            .join(Post)\
+            .group_by(Post.id)\
+            .order_by(count(Post.id).desc())\
+            .limit(limit)\
+            .all()
+    
     return result

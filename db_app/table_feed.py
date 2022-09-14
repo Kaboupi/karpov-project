@@ -1,5 +1,6 @@
 from database import Base, SessionLocal
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy.orm import relationship
 from table_post import Post
 from table_user import User
 
@@ -16,6 +17,8 @@ class Feed(Base):
     )
     action = Column(String)
     time = Column(DateTime)
+    user = relationship(User)
+    post = relationship(Post)
 
 
 if __name__ == '__main__':
