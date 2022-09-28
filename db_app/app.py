@@ -1,7 +1,5 @@
-import psycopg2
 from typing import List
 from fastapi import FastAPI, HTTPException, Depends
-from loguru import logger
 from schema import PostGet, UserGet, FeedGet
 from database import SessionLocal
 from sqlalchemy.sql.functions import count
@@ -67,5 +65,5 @@ def get_recommended_feed(
             .order_by(count(Post.id).desc())\
             .limit(limit)\
             .all()
-    
+
     return result
