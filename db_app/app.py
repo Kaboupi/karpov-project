@@ -1,3 +1,6 @@
+"""
+Simple SQL queries using SQLAlchemy and FastAPI
+"""
 from typing import List
 from fastapi import FastAPI, HTTPException, Depends
 from schema import PostGet, UserGet, FeedGet
@@ -7,6 +10,7 @@ from sqlalchemy.orm import Session
 from table_post import Post
 from table_user import User
 from table_feed import Feed
+import uvicorn
 
 app = FastAPI()
 
@@ -67,3 +71,7 @@ def get_recommended_feed(
             .all()
 
     return result
+
+if __name__ == '__main__':
+    print(__doc__)
+    uvicorn.run("app:app", port=8895, reload=True)  # Запуск лок. сервера uvicorn с параметрами
